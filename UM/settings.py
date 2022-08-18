@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-$fk-$5qlhd94_f!w6_%gb=i7l1p#z+xs(#6d9y$(++9e7q$t46
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['localhost','127.0.0.1']
+ALLOWED_HOSTS = ['localhost','127.0.0.1','https://um-fb-0817app.herokuapp.com/']
 
 
 # Application definition
@@ -93,14 +93,14 @@ WSGI_APPLICATION = 'UM.wsgi.application'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql', 
-        'NAME': 'UM',
-        'USER': 'root',
-        'PASSWORD': 'root',
-        'HOST': 'localhost',  
-        'PORT': '3306',
-    }
+   'default': {
+       'ENGINE': 'django.db.backends.postgresql',
+       'NAME': 'dckhibdfq8q5qt',
+       'USER': 'hyjhhvfnwaqhhy',
+       'PASSWORD': 'e6e35030e6908aec5bf523b4c9e938799c5d303f91ff21d70e9e2e48aa6e87f7s',
+       'HOST': 'ec2-44-195-100-240.compute-1.amazonaws.com',
+       'PORT': '5432',
+   }
 }
 
 
