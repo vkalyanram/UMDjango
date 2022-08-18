@@ -59,7 +59,7 @@ def update(request,uid):
             return render(request, 'dashboard.html',context)   
         else:
             p=Profile.objects.filter(user_id=uid)
-            message=p
+            message=f'{p.qrcode}-{p.token}'
             context={
             'message':message,
             'p':p
