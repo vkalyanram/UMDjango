@@ -29,33 +29,42 @@ def make_qrcode(qr_input:dict):
 def update(request,uid):
       
     if request.method == 'POST':
-        address= request.POST["address"]
-        city= request.POST["city"]
-        phone= int(request.POST["phone"])
-        image = request.FILES.get('image')
-        
-        p=Profile(address=address,city=city,phone=phone,user_id=uid,profileimg=image)
-        p.save()
-        message="Your informaiton has been updated !"
-        p=Profile.objects.get(user_id=uid)
-        user_object=User.objects.get(id=uid)
-        qr_input={
-        'address':p.address,
-        'city':p.city,
-        'phone':p.phone,
-        'name':user_object.username
+        if p=Profile.objects.filter(user_id=uid).exists()==False:
+            address= request.POST["address"]
+            city= request.POST["city"]
+            phone= int(request.POST["phone"])
+            image = request.FILES.get('image')
+            p=Profile(address=address,city=city,phone=phone,user_id=uid,profileimg=image)
+            p.save()
+            message="Your informaiton has been updated !"
+            p=Profile.objects.get(user_id=uid)
+            user_object=User.objects.get(id=uid)
+            qr_input={
+            'address':p.address,
+            'city':p.city,
+            'phone':p.phone,
+            'name':user_object.username
                 }
-        token=get_token(qr_input)      
-        qr_name=make_qrcode(qr_input)
-        qr_to_be_saved=f'qr_code_images/{qr_name}.png' #file name and path of qr code 
-        p.qrcode=qr_to_be_saved
-        p.token=token
-        p.save()
-        context={
-        'message':message,
-        'p':p
-        }
-        return render(request, 'dashboard.html',context)   
+            token=get_token(qr_input)      
+            qr_name=make_qrcode(qr_input)
+            qr_to_be_saved=f'qr_code_images/{qr_name}.png' #file name and path of qr code 
+            p.qrcode=qr_to_be_saved
+            p.token=token
+            p.save()
+            context={
+            'message':message,
+            'p':p
+            }
+            return render(request, 'dashboard.html',context)   
+        else:
+            p=Profile.objects.filter(user_id=uid)
+            message="Your account is already updated"
+            context={
+            'message':message,
+            'p':p
+            }
+            return render(request, 'dashboard.html',context)
+            
     else:
 
         return render(request,'index.html'  )
