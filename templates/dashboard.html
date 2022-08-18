@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+
+ <a class="btn btn-primary"  href="/logout">Logout</a>
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+  <strong>Hi </strong> {{message}}
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+<div class="text-left">
+    <h2>QR-CODE</h2>
+    
+</div>	
+<div class="text-center">
+    <img src="{{p.qrcode.url}}" class="img-thumbnail">
+    
+</div>	
+
+<div class="text-left">
+    <h2>Secure-CODE</h2>
+    
+</div>	
+<div class="form-floating">
+  <textarea class="form-control" id="token">{{p.token}}</textarea>
+ 
+</div>
+
+
+{% endblock %} 

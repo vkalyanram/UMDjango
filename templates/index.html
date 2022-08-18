@@ -1,4 +1,38 @@
-{% extends 'base.html' %}
+	{% extends 'base.html' %}
+
 {% block content %}
 
+  <p>Hi <b>{{ user.username }}</b></p>
+  
+
+
+  <h6>Please fill your details </h6>
+<form action="/update/{{user.id}}" method="post"  enctype="multipart/form-data">
+{% csrf_token %}
+
+<div class="input-group mb-3">
+  <div class="custom-file">
+    <label for="ppic" class="form-label">Please Select Profile Picture</label>
+    <input type="file" class="custom-file-input" id="image" name="image">
+   
+  </div>
+  
+</div>
+  <div class="mb-3">
+    <label for="address" class="form-label">Address</label>
+    <input input type="text"  id="address" name="address"  class="form-control" required>
+  </div>
+  <div class="mb-3">
+    <label for="city" class="form-label">City</label>
+    <input input type="text"  id="city" name="city" class="form-control" required>
+  </div>
+  <div class="mb-3">
+    <label for="fn" class="form-label">Phone</label>
+    <input input type="text"  id="phone" class="form-control" name="phone" required>
+  </div>
+  
+  <button type="submit" class="btn btn-primary">Update</button>
+</form>
+
+ 
 {% endblock %}
