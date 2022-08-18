@@ -59,7 +59,7 @@ def update(request,uid):
             return render(request, 'dashboard.html',context)   
         else:
             p=Profile.objects.filter(user_id=uid)
-            message="Your account is already updated"
+            message=p
             context={
             'message':message,
             'p':p
