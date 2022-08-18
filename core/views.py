@@ -59,7 +59,7 @@ def update(request,uid):
             return render(request, 'dashboard.html',context)   
         else:
             p=Profile.objects.get(user_id=uid)
-            message=f'{p.qrcode}-{p.token}'
+            message=f'Your profile is already updated'
             context={
             'message':message,
             'p':p
