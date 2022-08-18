@@ -29,7 +29,7 @@ def make_qrcode(qr_input:dict):
 def update(request,uid):
       
     if request.method == 'POST':
-    p=Profile.objects.filter(user_id=uid).exists()
+        p=Profile.objects.filter(user_id=uid).exists()
         if not p:
             address= request.POST["address"]
             city= request.POST["city"]
